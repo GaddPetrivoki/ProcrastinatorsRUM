@@ -7,3 +7,5 @@ class Users:
 
 	def permissions(self,npermissions):	
 		self.permissions = npermissions
+
+
