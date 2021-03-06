@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% if title %}
-         <title> ZN Workflow - {{ title }} </title>
-    {% else %}
-        <title> ZN Workflow </title>
-    {% endif %}
-</head>
-    <body>
-        <h1> Zeit Nehmer Worflow Manager </h1>
-    </body>
-</html>
+{% extends "Main_Page/base.html" %}
+{% block content %}
+    <h1> Zeit Nehmer Worflow Manager </h1>
+{% endblock content%}
 
