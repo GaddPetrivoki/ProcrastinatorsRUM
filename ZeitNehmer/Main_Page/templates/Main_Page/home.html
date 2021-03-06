@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    {% if title %}
+         <title> ZN Workflow - {{ title }} </title>
+    {% else %}
+        <title> ZN Workflow </title>
+    {% endif %}
 </head>
     <body>
         <h1> Zeit Nehmer Worflow Manager </h1>
