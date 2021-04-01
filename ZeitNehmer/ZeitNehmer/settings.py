@@ -128,6 +128,8 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'static')
 ]
 
+LOGIN_REDIRECT_URL = 'Main-Page'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-auto-field
 
