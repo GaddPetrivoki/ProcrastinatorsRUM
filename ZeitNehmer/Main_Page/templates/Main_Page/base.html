@@ -42,7 +42,16 @@
     </header>
 
         <div class = "container">
-        {% block content %} {% endblock %}
+
+            {% if messages %}
+                {% for massage in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+         {% block content %} {% endblock %}
         </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
