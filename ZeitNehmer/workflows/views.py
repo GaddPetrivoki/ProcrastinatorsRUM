@@ -6,10 +6,13 @@ from django.views.generic.edit import UpdateView, DeleteView
 from .models import Workflows
 from .tables import WorkflowsTable
 from .forms import WorkflowsForm
-
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class WorkflowsListView(SingleTableView):
+
+class WorkflowsListView(LoginRequiredMixin, SingleTableView):
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
     model = Workflows
     table_class = WorkflowsTable
     template_name = 'index.html'
