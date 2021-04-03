@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),            #URL to 'admin' page
     path('', include('Main_Page.urls')),        #URL to the 'Main Page'
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout') #
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
 
-
+    path('workflows/', include('workflows.urls'))
 
 ]
