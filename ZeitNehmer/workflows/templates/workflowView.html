@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<!doctype html>
+
+<html lang="en">
+<head>
+  <title>Simply</title>
+</head>
+<body>
+  <p>Name: {{ workflows.name }}</p>
+  <p>Description: {{ workflows.description }}</p>
+  <p>Due date: {{ workflows.dueDate }}</p>
+  <p>Priority: {{ workflows.get_priority_display }}</p>
+  <a href="delete/" class="btn btn-primary"> Delete </a>
+  <a href="update/" class="btn btn-primary"> Update </a>
+</body>
+</html>
+{% endblock content%}

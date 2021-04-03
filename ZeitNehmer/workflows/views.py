@@ -36,4 +36,6 @@ class WorkflowDelete(DeleteView):
     template_name = 'deleteWorkflow.html'
 
 def workflowSingleView(request, pk):
-    return render(request,'workflowView.html')
+    results = Workflows.objects.get(pk=pk)
+    context = {'workflows': results}
+    return render(request,'workflowView.html', context)
