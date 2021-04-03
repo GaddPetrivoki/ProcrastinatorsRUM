@@ -14,12 +14,15 @@ class WorkflowsListView(SingleTableView):
     template_name = 'index.html'
 
 def workflowsCreation(request):
+    form = WorkflowsForm()
     if request.method == 'POST':
         form = WorkflowsForm(request.POST)
-        form.save()
-        messages.success(request, f'New Workflow Added!')
-        return redirect('Workflows')
-    else:
-        form = WorkflowsForm()
-
-        return render(request, 'new_workflow.html', {'form': form})
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'New Workflow Added!')
+            return redirect('Workflows')
+    return render(request, 'new_workflow.html', {'form': form})
+    # else:
+    #     form = WorkflowsForm()
+    #
+    #     return render(request, 'new_workflow.html', {'form': form})
