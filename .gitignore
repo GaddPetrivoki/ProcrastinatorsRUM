@@ -1,1 +1,6 @@
-*.py~
+*py~
+*.aux
+*.log
+*.pdf
+*.synctex.gz
+
