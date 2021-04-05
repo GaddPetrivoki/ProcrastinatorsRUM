@@ -322,36 +322,38 @@ To maintain simplicity this process can be divided into different components, th
   Existing users can use their credentials to log into the app, this will be an email or username and a password. The login mechanism uses the users registered with the sign up form to enter the app as an existing user, this is confirmed using the database so that both the email/username and password combination match with the ones registered on the database, if it fails the user will be asked to enter their information again. Once sucessful the user will be able to access all of their content.
 
   \subsection{User Interface}
-\begin{figure}[h!]
-     \centering
-      \includegraphics[width=1.2\columnwidth]{Images/homepage.jpg}
-      \caption{Home Page}
-      \label{fig:figure 3}
-\end{figure}
+\vspace{45}
+    \begin{figure}[h!]
+         \centering
+          \includegraphics[width=1.2\columnwidth]{Images/homepage.jpg}
+          \caption{Home Page}
+          \label{fig:figure 3}
+    \end{figure}
 
-  \begin{enumerate}
+
+
+In Figure 6 a prototype of what will be our login page is presented, this includes:
+\begin{enumerate}
     \item A textbox to add the email or username
     \item A textbox to add the user's password
     \item A button to continue with the login
     \item A "Sign up" button in case the user is a new member, this will redirect the user to the sign up procedure discussed before.
   \end{enumerate}
-In Figure 6 a prototype of what will be our login page is presented, this includes:
   \begin{figure}[h!]
       \centering
-      \includegraphics[width=1.2\columnwidth]{Images/LogIn.jpg}
+      \includegraphics[width=1\columnwidth]{Images/LogIn.jpg}
       \caption{Log In interface}
       \label{fig:figure 4}
   \end{figure}
 
-  In order for the user to not lose their account and to minimize that they make another one, a "Forgot password?" button will be added. There an email will be sent to the provided email and a procedure to reset the password will take place. This will be worked on a future sprint.
-
+\vspace{150}
 
 \section{Users}
   Users can be defined as the people who have made an account and use our platform. There are still some doubts on how this is going to be handle, one of the option is the use of Object Oriented Programming (OOP). These users can be divided intro categories:
   \begin{enumerate}
     \item Administrators
     \begin{quote}
-        These users can administrate other users as well as give and take permissions. They will be able to login in a separate from as normal users, like on Figure 5.
+        These users can administrate other users as well as give and take permissions. They will be able to login in a separate from as normal users, like on Figure 7.
         \begin{figure}[h!]
             \centering
             \includegraphics[scale=0.75]{Images/adminLogin.png}
@@ -444,19 +446,20 @@ In order to create a new workflow, you fill the following fields:
     \item Due Date
     \item Workflow Priority(Low, Medium, Urgent)
 \end{enumerate}
-\begin{figure}[h!]
-            \centering
-            \includegraphics[width=1.2\columnwidth]{Images/Workflows.jpg}
-            \caption{User Workflows}
-            \label{fig:figure 9}
-        \end{figure}
-This workflows have the CRUD functionalities:
+
+Also, this workflows have the CRUD functionalities:
 \begin{enumerate}
     \item Create
     \item Read
     \item Update
     \item Delete
 \end{enumerate}
+\begin{figure}[h!]
+            \centering
+            \includegraphics[width=1.2\columnwidth]{Images/Workflows.jpg}
+            \caption{User Workflows}
+            \label{fig:figure 9}
+        \end{figure}
 
 
 
