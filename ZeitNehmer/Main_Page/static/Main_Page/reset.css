@@ -114,7 +114,7 @@ small {
 #hero-image {
     height: 580px;
     padding-top: 1px;
-    background: url('https://i.imgur.com/5coDTUk.jpg') no-repeat center;
+    background: url('https://i.imgur.com/oTj4Qd7.jpg') no-repeat center;
 }
 #hero-image h2 {
     margin: 180px 0 40px 0;
@@ -147,13 +147,13 @@ small {
     text-align: center;
 }
 #features ul li.feature-1 {
-    background: url('https://i.imgur.com/1dX7Viq.png') no-repeat top center;
+    background: url('https://i.imgur.com/opWM3Aa.png') no-repeat top center;
 }
 #features ul li.feature-2 {
-    background: url('https://i.imgur.com/MtQMT7Q.png') no-repeat top center;
+    background: url('https://i.imgur.com/eNW12VN.png') no-repeat top center;
 }
 #features ul li.feature-3 {
-    background: url('https://i.imgur.com/l6EwFcn.png') no-repeat top center;
+    background: url('https://i.imgur.com/opWM3Aa.png) no-repeat top center;
 }
 
 #primary-content {
