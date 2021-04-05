@@ -4,10 +4,11 @@
 \documentclass{article}[draft]
 \usepackage{blindtext}
 \usepackage{graphicx}
-
+\usepackage{titlesec}
 \title{Phase 2}
 \date{2021\\February}
 
+\titlespacing*{\section}{0pt}{5pt}{10pt}
 \author{Gabriel L., Jose Lazcano, Jesus Jaime,\\ Yadiel Perez, Fernando, Cristian}
 
 \begin{document}
@@ -18,7 +19,7 @@ ZeitNehmer Workflow Manager\\
 Mayaguez, PR\\
 Febrero 10, 2021
 \section{Current Situation, Needs, Ideas and Concept}
-\vspace{10pt}
+
 The front-end of our project has started to take shape. For the most part the front-end is mostly finished just needing a couple final changes that can be handled in a future sprint. Users can now register and login to the website. This is all maintained in an database and is kept even when the Django server is restarted. Work on the back-end has begun as we start to whittle away at the interface we want for the users and as we begin to plan out how we're going to handle managers and users access to parts of the website.
 \\
 
@@ -28,7 +29,7 @@ Managers need project management programs to manage their employees tasks and pr
 \item Platform for employees: Employees can view tasks assigned to them and add notes alerting the manager of questions and or detailed info about the task.
 \end{enumerate}
 \section{Scope, Span and Synopsis}
-\vspace{10pt}
+
 The problem is to understand project management in general: deadlines, task lists, schedules, file sharing, communication, teamwork, and logistics of project management. This is used to build a theory of management systems: leadership, planning, project monitoring, status, standards and, improvement.
 
 The project is to develop and research a Program Management Software. This project is expected to cover:
@@ -40,7 +41,7 @@ The project is to develop and research a Program Management Software. This proje
 \end{enumerate}
 
 \section{Assumptions and Dependencies}
-\vspace{10pt}
+
 Rough sketch requirements as user stories:
 \begin{quotation}
     As a user, having an organized and productive workflow is very critical and important, because it drastically improves the productivity of the user and the company. When its time to divide the work withing a team or assigning work to your employees having a Workflow management app really helps the process. If someone is stuck in a task, they can show it on the app, so a manager/Leader can send him a message and start helping them. The employee/manager and the team-member/Leader communication improves by having the online message system.
@@ -50,7 +51,7 @@ Rough sketch requirements as user stories:
 \end{quotation}
 
 \section{Implicit/Derivative Goals}
-\vspace{10pt}
+
 
 Domain Requirements:
 \begin{itemize}
@@ -287,7 +288,7 @@ Domain Functions:
 
 \end{center}
 \section{Roles}
-\vspace{10pt}
+
 \begin{center}
 
 \begin{tabular}{| l | p{5cm} |}\hline
@@ -297,7 +298,7 @@ Yadiel     & Back-End\\ \hline
 Cristian   & Front-end-design \\ \hline
 Fernando   & Back-End \\ \hline
 Jesus	   & Information storage\\ \hline
-Jose Lazcano  & User Interface and Back-End \\ \hline
+Jose Lazcano  & User Interface \\ \hline
 \end{tabular}
 
 \end{center}
