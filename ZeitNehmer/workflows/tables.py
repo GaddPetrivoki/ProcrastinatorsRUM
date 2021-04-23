@@ -10,10 +10,10 @@ class CustomTemplateColumn(tables.TemplateColumn):
 
 
 class WorkflowsTable(tables.Table):
-    updateButton = '<a href="/workflows/{{record.id}}/update" class="btn btn-primary">UPDATE</a>'
+    updateButton = '<a href="{% url \'update_workflow\' request.user record.id %}" class="btn btn-primary">UPDATE</a>'
     updateWorkflow = CustomTemplateColumn(updateButton)
 
-    viewButton = '<a href="/workflows/{{record.id}}/delete" class="btn btn-danger">DELETE</a>'
+    viewButton = '<a href="{% url \'delete_workflow\' request.user record.id %}" class="btn btn-danger">DELETE</a>'
     viewWorkflow = CustomTemplateColumn(viewButton)
 
     dueDate = tables.DateTimeColumn(format ='M d Y')

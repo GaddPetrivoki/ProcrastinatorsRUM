@@ -8,34 +8,41 @@ from .tables import WorkflowsTable
 from .forms import WorkflowsForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-
-
+from django.http import HttpResponse
 class WorkflowsListView(LoginRequiredMixin, SingleTableView):
+    def get_queryset(self):
+        return Workflows.objects.filter(owner=self.request.user.id)
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Workflows
+
     table_class = WorkflowsTable
     template_name = 'index.html'
 
-def workflowsCreation(request):
+
+def workflowsCreation(request, username):
     form = WorkflowsForm()
+    print(request.user.id)
     if request.method == 'POST':
         form = WorkflowsForm(request.POST)
         if form.is_valid():
-            form.save()
+            #This is done so there is no "Integrity Error"
+            workflow = form.save(commit=False)
+            workflow.owner = request.user
+            workflow.save()
             messages.success(request, f'New Workflow Added!')
-            return redirect('Workflows')
+            return redirect('Workflows', username=username)
     return render(request, 'new_workflow.html', {'form': form})
 
 class WorkflowUpdate(UpdateView):
     model = Workflows
     fields = ["name", "description", "dueDate", "priority"]
     template_name = "updateWorkflow.html"
-    success_url = reverse_lazy('Workflows')
+    success_url = reverse_lazy('Workflows', args=['request.user'])
 
 class WorkflowDelete(DeleteView):
     model = Workflows
-    success_url = reverse_lazy('Workflows')
+    success_url = reverse_lazy('Workflows', args=['request.user'])
     template_name = 'deleteWorkflow.html'
 
 def workflowSingleView(request, pk):

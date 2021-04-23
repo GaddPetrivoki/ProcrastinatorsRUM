@@ -30,7 +30,8 @@
                     <div class="navbar-nav mr-auto">
                         {% if user.is_authenticated %}
                         <a class="nav-item nav-link" href="{% url 'Main-Page' %}">Home</a>
-                        <a class="nav-item nav-link" href="{% url 'Workflows' %}">WorkFlows</a>
+
+                        <a class="nav-item nav-link" href="{% url 'Workflows' user.username %}">WorkFlows</a>
                         {% else %}
                         <a class="nav-item nav-link" href="{% url 'Main-Page' %}">Home</a>
                         {% endif %}
@@ -69,4 +70,3 @@
 
     </body>
 </html>
-
