@@ -4,23 +4,34 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Required meta tags -->
-
   <title>Simply</title>
 </head>
 <body>
 
-  <div class="container">
-    <div class="row justify-content-between">
-    <div class="col-4">
-      <h1> "Project Name" </h1>
+    {% if object_list.count == 0 %}
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="text-center">
+          <h1 class>"Project Name" </h1>
+          <h2 class="p-3"> It looks like you don't have any workflows!</h2>
+          <a href="{% url 'creation' user.username %}" class= "btn btn-primary btn-lg"> Start by creating one!</a>
+        </div>
+      </div>
     </div>
-    <div class="col col-4 align-self-center">
-      <a href="{% url 'creation' user.username %}" class= "btn btn-primary">New Workflow</a>
+    {% else %}
+      <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-auto">
+        <h1 class =" overflow-auto"> {{user.get_username}}'s Workflows </h1>
+      </div>
+      <div class="col col-4 align-self-center">
+        <a href="{% url 'creation' user.username %}" class= "btn btn-primary">New Workflow</a>
+      </div>
     </div>
   </div>
-</div>
   {% render_table table %}
+  {% endif %}
+
 </body>
 </html>
 {% endblock content%}

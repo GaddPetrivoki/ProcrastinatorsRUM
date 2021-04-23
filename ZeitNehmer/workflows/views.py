@@ -8,7 +8,8 @@ from .tables import WorkflowsTable
 from .forms import WorkflowsForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+
+from django import forms
 class WorkflowsListView(LoginRequiredMixin, SingleTableView):
     def get_queryset(self):
         return Workflows.objects.filter(owner=self.request.user.id)
@@ -22,7 +23,7 @@ class WorkflowsListView(LoginRequiredMixin, SingleTableView):
 
 def workflowsCreation(request, username):
     form = WorkflowsForm()
-    print(request.user.id)
+
     if request.method == 'POST':
         form = WorkflowsForm(request.POST)
         if form.is_valid():
@@ -36,8 +37,9 @@ def workflowsCreation(request, username):
 
 class WorkflowUpdate(UpdateView):
     model = Workflows
-    fields = ["name", "description", "dueDate", "priority"]
+    form_class = WorkflowsForm
     template_name = "updateWorkflow.html"
+
     success_url = reverse_lazy('Workflows', args=['request.user'])
 
 class WorkflowDelete(DeleteView):

@@ -11,12 +11,13 @@ class CustomTemplateColumn(tables.TemplateColumn):
 
 class WorkflowsTable(tables.Table):
     updateButton = '<a href="{% url \'update_workflow\' request.user record.id %}" class="btn btn-primary">UPDATE</a>'
-    updateWorkflow = CustomTemplateColumn(updateButton)
+    updateWorkflow = CustomTemplateColumn(updateButton, verbose_name=" ")
 
     viewButton = '<a href="{% url \'delete_workflow\' request.user record.id %}" class="btn btn-danger">DELETE</a>'
-    viewWorkflow = CustomTemplateColumn(viewButton)
+    viewWorkflow = CustomTemplateColumn(viewButton, verbose_name=" ")
 
-    dueDate = tables.DateTimeColumn(format ='M d Y')
+    dueDate = tables.DateTimeColumn(format ='M d Y', verbose_name="Due Date")
+
 
 
 
