@@ -1,4 +1,4 @@
-from .models import Workflows
+from .models import Workflows, Teams
 from django import forms
 from django.forms import ModelForm
 
@@ -14,3 +14,8 @@ class WorkflowsForm(forms.ModelForm):
             'type': 'date'
             }),
         }
+
+class TeamsForm(forms.ModelForm):
+    class Meta:
+        model = Teams
+        fields = ['name', 'description']

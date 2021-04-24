@@ -6,6 +6,12 @@ PRIORITY_CHOICES = (
     ('M', 'Medium'),
     ('U', 'Urgent'),
     )
+
+class Teams(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+    members = models.ForeignKey(User, on_delete=models.CASCADE)
+
 class Workflows(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
@@ -14,3 +20,5 @@ class Workflows(models.Model):
 
     #Unique workflows per user test
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    team = models.ForeignKey(Teams, on_delete=models.CASCADE, null=True)

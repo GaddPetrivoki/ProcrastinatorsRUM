@@ -12,7 +12,7 @@
     <div class="container h-100">
       <div class="row h-100 justify-content-center align-items-center">
         <div class="text-center">
-          <h1 class>"Project Name" </h1>
+          <h1 class>{{user.get_username}}'s Workflows </h1>
           <h2 class="p-3"> It looks like you don't have any workflows!</h2>
           <a href="{% url 'creation' user.username %}" class= "btn btn-primary btn-lg"> Start by creating one!</a>
         </div>

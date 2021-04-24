@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Simply</title>
+</head>
+<body>
+  {% for teams in teams %}
+  <li>
+  <a href="{% url 'teams_workflows' user.username teams.id %}" class= "btn btn-primary btn-lg" type="Submit">{{teams.name}} </a>
+</li>
+  {% endfor %}
+<a href="{% url 'teams_create' user.username%}" class="btn btn-primary"> Create </a>
+</body>
+</html>
+{% endblock content%}
