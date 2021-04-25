@@ -7,6 +7,6 @@
 
   <a href="{% url 'teams_workflows' user.username teams.id %}" class= "btn btn-outline-success btn-lg btn-block" type="Submit">{{teams.name}} </a>
   {% endfor %}
-<a href="{% url 'teams_create' user.username%}" class="btn btn-outline-primary btn-lg btn-block"> Create </a>
+<a href="{% url 'teams_create' user.username%}" class="btn btn-outline-primary btn-lg btn-block"> Create a Team</a>
 
 {% endblock content%}

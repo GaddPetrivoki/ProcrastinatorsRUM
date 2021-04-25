@@ -16,7 +16,7 @@
         {% if request.get_full_path == workflows_url %}
         <h1 class>{{user.get_username}}'s Workflows </h1>
         {% else %}
-        <h1 class>{{teams.name}}'s Workflows </h1>
+        <h1 class>{{team.name}}'s Workflows </h1>
         {% endif %}
         <h2 class="p-3"> It looks like you don't have any workflows!</h2>
         <a href="{% url 'creation' user.username %}" class= "btn btn-primary btn-lg"> Start by creating one!</a>
@@ -40,7 +40,7 @@
   <div class="container">
     <div class="row justify-content-between">
       <div class="col-auto">
-        <h1 class =" overflow-auto"> {{user.get_username}}'s Workflows </h1>
+        <h1 class =" overflow-auto"> {{team.name}}'s Workflows </h1>
       </div>
       <div class="col col-2 align-self-center">
         <a href="{% url 'creation' user.username %}" class= "btn btn-primary">New Workflow</a>
@@ -49,12 +49,15 @@
         <a href="{% url 'teams_manage' user.username %}" class= "btn btn-primary">Manage Members</a>
     </div>
   </div>
+
   </div>
   {% endif %}
 
   {% render_table table %}
   {% endif %}
-
+  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+    <a href="{% url 'teams' user.username %}" class="btn btn-primary me-md-2" type="button">TEAMS</a>
+  </div>
 </body>
 </html>
 {% endblock content%}

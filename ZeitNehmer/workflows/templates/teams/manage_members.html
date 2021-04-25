@@ -1,17 +1,38 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-{% for member in members %}
-<p>{{member}}</p>
-<button class="btn btn-danger" >Delete</button>
-{% endfor %}
-<form method="post">
-  {% csrf_token %}
-  <form action="{% 'teams_manage' user.username}" method="POST">
-    <div class="input-group mb-3">
-      <input name="member" type="text" class="form-control" placeholder="Username" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add Member</button>
-    </div>
-  </form>
+
+<h1> Team Members </h1>
+<form action="" method="POST">
+  <div class="input-group mb-3">
+    {% csrf_token %}
+    <input name="member" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="button-addon2" required>
+    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add Member</button>
+  </div>
 </form>
+{% for member in members %}
+{% if member != user %}
+<p>{{member}}</p>
+<form action="" method="POST">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger" name='delete_member' value="{{member.id}}" >Remove Member</button>
+</form>
+{% endif %}
+{% endfor %}
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  {{message}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+<div class="d-grid gap-2 d-md-flex justify-content-md-start">
+  <a href="{% url 'teams_workflows' user.username team.id %}" class="btn btn-primary me-md-2" type="button">{{team.name}}'s Workflows</a>
+</div>
 {% endblock content %}

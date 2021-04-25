@@ -77,9 +77,9 @@ def teamsView(request, username):
 def teamsCreate(request, username):
     form = TeamsForm()
     form.fields['members'].queryset = User.objects.exclude(username = request.user)
+    print(form.fields['members'].queryset)
     if request.method == 'POST':
         form = TeamsForm(request.POST)
-
         if form.is_valid():
             #This is done so there is no "Integrity Error"
             team = form.save(commit=False)
@@ -99,6 +99,11 @@ class TeamsWorkflowsListView(LoginRequiredMixin, SingleTableView):
         self.request.session['team'] = self.kwargs['pk']
         return Workflows.objects.filter(owner=self.request.user.id, team = self.request.session['team'] )
 
+    def get_context_data(self,**kwargs):
+        self.request.session['team'] = self.kwargs['pk']
+        context = super(TeamsWorkflowsListView,self).get_context_data(**kwargs)
+        context['team'] = Teams.objects.filter(id = self.request.session['team'] )[0]
+        return context
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Workflows
@@ -111,8 +116,14 @@ def manageMember(request, username):
     team = queryset[0]
     context = team.members.all()
     if request.method == 'POST':
-        print(request.POST.get('member'))
-        print(User.objects.filter(username=request.POST.get('member')))
-        team.members.add(User.objects.filter(username=request.POST.get('member'))[0])
+        if request.POST.get('member') == None:
+            team.members.remove(request.POST.get('delete_member'))
+        else:
+            newMember = User.objects.filter(username=request.POST.get('member'))
 
-    return render(request, 'teams/manage_members.html', {'members': context})
+            if not newMember:
+                 messages.info(request, 'Member does not exist!')
+            else:
+                team.members.add(User.objects.filter(username=request.POST.get('member'))[0])
+
+    return render(request, 'teams/manage_members.html', {'members': context, 'team': team})
