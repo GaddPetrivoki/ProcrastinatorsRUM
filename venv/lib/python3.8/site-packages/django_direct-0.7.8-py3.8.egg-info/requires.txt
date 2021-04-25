@@ -1,0 +1,5 @@
+getdc
+Django<=1.8.6
+django-widget-tweaks
+django-bootstrap-form
+pyOpenSSL

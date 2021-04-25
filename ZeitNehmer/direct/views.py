@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 
-from ZeitNehmer.direct.models import Message
+from direct.models import Message
 
 # Create your views here.
 

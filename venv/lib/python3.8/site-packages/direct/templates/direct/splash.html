@@ -1,0 +1,92 @@
+{% extends "direct/base.html" %}
+{% block content %}
+
+{% load i18n %}
+
+
+<div class="container">
+    
+    <br><br>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="jumbotron">
+              <h1>Welcome to django-direct</h1>
+               <p>django-direct is a reusable, open-source, RESTFul
+               API for inspecting x509 certificates found in DNS or LDAP.
+			   The GET methods are for machine readable results, whereas the POST
+			   methods offer some human interfaces for testing purposes. Only CRL
+			   revocation checking is supported.
+			   <strong>OCSP is not supported at this time.</strong></p>
+               <p>django-direct wraps the getdc Python library and command line tools.
+               Below are the URLs this application provides. No authentication is required
+               for this API. Always run this service using HTTPS in production.</p>
+
+  <table border="1" class="table">
+  <thead>
+  <tr>
+    <td>NAME</td>
+    <td>DESCRIPTION</td>
+    <td>METHOD</td>
+    <td>URL/Link</td>
+  </tr>
+  </thead>
+  
+  <tbody>
+  <tr>
+    <td>Get Certificate</td>
+    <td>Fetch the certificate(s) from a given endpoint in .PEM format 
+from DNS and LDAP. Appending ".pem" to the endpoint will return a .PEM file 
+instead of ASCII. Replace the endpoint with an actual endpoint.
+    <td>GET</td>
+    <td>{% url 'get_direct_endpoint_certificate_no_extension' 'endpoint'  %}</td>
+  </tr>
+  
+  <tr>
+    <td>Validate Certificate</td>
+    <td>Fetch the certificate details from a given endpoint from DNS and LDAP.
+Returns a JSON document giving information about the certificate if found.
+    <td>GET</td>
+    <td>{% url 'validate_direct_endpoint' 'endpoint'  %}</t$
+  </tr>
+
+  
+  <tr>
+    <td>Validate Certificate via Discovery</td>
+    <td>Complete the form to discover and parse a certificate.
+    <td>POST</td>
+    <td><a class="btn btn-primary btn-small btn-block"
+          href="{% url 'direct_verify_with_discovery_form' %}">
+         <i class="fa fa-cloud-download"> </i>
+          Verify with DNS and LDAP</td>
+    
+  </tr>
+  
+  <tr>
+    <td>Validate Certificate with PEM</td>
+    <td>Complete the form with an x509 certificate to parse a certificate.
+    <td>POST</td>
+    <td>
+        <a class="btn btn-primary btn-small btn-block"
+          href="{% url 'direct_verify_with_pem_form'  %}">
+         <i class="fa fa-certificate"> </i> Verify with PEM</a>
+        
+</td>
+  </tr>
+
+
+
+
+
+
+</tbody>
+
+</table> 
+
+
+
+             
+            </div>
+        </div>  
+    </div>
+</div>
+    {% endblock %}

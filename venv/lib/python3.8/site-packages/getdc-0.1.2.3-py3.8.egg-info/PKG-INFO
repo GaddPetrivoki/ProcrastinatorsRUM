@@ -1,0 +1,11 @@
+Metadata-Version: 1.1
+Name: getdc
+Version: 0.1.2.3
+Summary: Library of tools for fetching and parsing x509 certificate from DNS and LDAP
+Home-page: https://gitbub.com/transparenthealth/getdc
+Author: Alan Viars
+Author-email: sales@videntity.com
+License: UNKNOWN
+Download-URL: https://gitbub.com/transparenthealth/getdc/tarball/master
+Description: Outputs a JSON object of success or errors.          Requires dnspython and python-ldap to be installed and python-dev           libldap2-dev libsasl2-dev need to be installed on your system.
+Platform: UNKNOWN
