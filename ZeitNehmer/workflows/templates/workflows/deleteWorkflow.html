@@ -4,11 +4,11 @@
 
 <h1>Delete Workflow</h1>
 
-<p>Are you sure you want to delete the Workflow: {{ workflows.name }}?</p>
+<p id="p1">Are you sure you want to delete the Workflow: {{ workflows.name }}?</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Yes, delete." class='btn btn-danger'>
+  <input type="submit" value="Yes, delete." class='btn btn-outline-danger btn-lg btn-block'>
 </form>
 
 {% endblock %}

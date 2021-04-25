@@ -32,6 +32,7 @@
                         <a class="nav-item nav-link" href="{% url 'Main-Page' %}">Home</a>
 
                         <a class="nav-item nav-link" href="{% url 'Workflows' user.username %}">WorkFlows</a>
+                        <a class="nav-item nav-link" href="{% url 'teams' user.username %}">Teams</a>
                         {% else %}
                         <a class="nav-item nav-link" href="{% url 'Main-Page' %}">Home</a>
                         {% endif %}

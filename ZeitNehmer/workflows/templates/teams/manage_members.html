@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% for member in members %}
+<p>{{member}}</p>
+<button class="btn btn-danger" >Delete</button>
+{% endfor %}
+<form method="post">
+  {% csrf_token %}
+  <form action="{% 'teams_manage' user.username}" method="POST">
+    <div class="input-group mb-3">
+      <input name="member" type="text" class="form-control" placeholder="Username" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add Member</button>
+    </div>
+  </form>
+</form>
+{% endblock content %}

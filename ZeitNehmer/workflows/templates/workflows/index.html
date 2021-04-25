@@ -8,18 +8,25 @@
 </head>
 <body>
 
-    {% if object_list.count == 0 %}
-    <div class="container h-100">
-      <div class="row h-100 justify-content-center align-items-center">
-        <div class="text-center">
-          <h1 class>{{user.get_username}}'s Workflows </h1>
-          <h2 class="p-3"> It looks like you don't have any workflows!</h2>
-          <a href="{% url 'creation' user.username %}" class= "btn btn-primary btn-lg"> Start by creating one!</a>
-        </div>
+  {% if object_list.count == 0 %}
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="text-center">
+        {% url 'Workflows' user.get_username as workflows_url %}
+        {% if request.get_full_path == workflows_url %}
+        <h1 class>{{user.get_username}}'s Workflows </h1>
+        {% else %}
+        <h1 class>{{teams.name}}'s Workflows </h1>
+        {% endif %}
+        <h2 class="p-3"> It looks like you don't have any workflows!</h2>
+        <a href="{% url 'creation' user.username %}" class= "btn btn-primary btn-lg"> Start by creating one!</a>
       </div>
     </div>
-    {% else %}
-      <div class="container">
+  </div>
+  {% else %}
+  {% url 'Workflows' user.get_username as workflows_url %}
+  {% if request.get_full_path == workflows_url %}
+  <div class="container">
     <div class="row justify-content-between">
       <div class="col-auto">
         <h1 class =" overflow-auto"> {{user.get_username}}'s Workflows </h1>
@@ -29,6 +36,22 @@
       </div>
     </div>
   </div>
+  {% else %}
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-auto">
+        <h1 class =" overflow-auto"> {{user.get_username}}'s Workflows </h1>
+      </div>
+      <div class="col col-2 align-self-center">
+        <a href="{% url 'creation' user.username %}" class= "btn btn-primary">New Workflow</a>
+      </div>
+      <div class='col col-2 align-self-center'>
+        <a href="{% url 'teams_manage' user.username %}" class= "btn btn-primary">Manage Members</a>
+    </div>
+  </div>
+  </div>
+  {% endif %}
+
   {% render_table table %}
   {% endif %}
 

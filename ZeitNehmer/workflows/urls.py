@@ -14,4 +14,5 @@ urlpatterns = [
 
     #TEAMS' WORKFLOWS
     path('<username>/teams/<int:pk>/', TeamsWorkflowsListView.as_view(), name='teams_workflows'),
+    path('<username>/teams/manage/', views.manageMember, name='teams_manage'),
 ]

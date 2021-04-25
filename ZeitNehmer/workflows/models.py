@@ -10,7 +10,7 @@ PRIORITY_CHOICES = (
 class Teams(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    members = models.ForeignKey(User, on_delete=models.CASCADE)
+    members = models.ManyToManyField(User)
 
 class Workflows(models.Model):
     name = models.CharField(max_length=50)

@@ -1,7 +1,7 @@
 from .models import Workflows, Teams
 from django import forms
 from django.forms import ModelForm
-
+from django.contrib.auth.models import User
 class WorkflowsForm(forms.ModelForm):
     class Meta:
         model = Workflows
@@ -18,4 +18,12 @@ class WorkflowsForm(forms.ModelForm):
 class TeamsForm(forms.ModelForm):
     class Meta:
         model = Teams
-        fields = ['name', 'description']
+        fields = ['name', 'description', 'members']
+
+    members = forms.ModelMultipleChoiceField(
+        queryset=User.objects.none(),
+        widget=forms.CheckboxSelectMultiple,
+        required = False,
+    )
+class addMemberForm(forms.Form):
+    member = forms.CharField(label='Member', max_length=100)

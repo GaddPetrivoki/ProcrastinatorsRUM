@@ -5,12 +5,11 @@ from django.contrib import messages
 from django.views.generic.edit import UpdateView, DeleteView
 from .models import Workflows, Teams
 from .tables import WorkflowsTable
-from .forms import WorkflowsForm, TeamsForm
+from .forms import WorkflowsForm, TeamsForm, addMemberForm
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
-from django.http import HttpResponseRedirect
-
+from django.contrib.auth.models import User
 #Personal
 class WorkflowsListView(LoginRequiredMixin, SingleTableView):
     def get_queryset(self):
@@ -29,7 +28,6 @@ class WorkflowsListView(LoginRequiredMixin, SingleTableView):
 def workflowsCreation(request, username):
     form = WorkflowsForm()
 
-    print(request.session['prev_url'])
     if request.method == 'POST':
 
         form = WorkflowsForm(request.POST)
@@ -78,14 +76,19 @@ def teamsView(request, username):
 
 def teamsCreate(request, username):
     form = TeamsForm()
-
+    form.fields['members'].queryset = User.objects.exclude(username = request.user)
     if request.method == 'POST':
         form = TeamsForm(request.POST)
+
         if form.is_valid():
             #This is done so there is no "Integrity Error"
             team = form.save(commit=False)
-            team.members = request.user
             team.save()
+            team.members.add(request.user)
+
+            for members in request.POST.getlist('members'):
+                team.members.add(members)
+
             messages.success(request, f'New Workflow Added!')
             return redirect('teams', username=username)
 
@@ -95,9 +98,21 @@ class TeamsWorkflowsListView(LoginRequiredMixin, SingleTableView):
     def get_queryset(self):
         self.request.session['team'] = self.kwargs['pk']
         return Workflows.objects.filter(owner=self.request.user.id, team = self.request.session['team'] )
+
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Workflows
 
     table_class = WorkflowsTable
     template_name = 'workflows/index.html'
+
+def manageMember(request, username):
+    queryset = Teams.objects.filter(id = request.session['team'])
+    team = queryset[0]
+    context = team.members.all()
+    if request.method == 'POST':
+        print(request.POST.get('member'))
+        print(User.objects.filter(username=request.POST.get('member')))
+        team.members.add(User.objects.filter(username=request.POST.get('member'))[0])
+
+    return render(request, 'teams/manage_members.html', {'members': context})

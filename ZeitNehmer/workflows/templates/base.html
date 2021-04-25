@@ -9,7 +9,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     {% if title %}
@@ -17,6 +17,36 @@
     {% else %}
         <title> ZN Workflow </title>
     {% endif %}
+
+    <style>
+    		p {
+    			margin: 50px 0;
+    		}
+    		code {
+    			color: #c00;
+    		}
+    		#p1 {
+    			font-weight: bold;
+          font-size: 25px;
+    		}
+    		#p2 {
+    			font-style: italic;
+          font-size: 25px;
+    		}
+    		#p3 {
+    			font-variant: small-caps;
+          font-size: 25px;
+    		}
+    		#p4 {
+    			text-transform: uppercase;
+          font-size: 25px;
+    		}
+    		#p5 {
+    			line-height: 2;
+          font-size: 25px;
+    		}
+    	</style>
+
 </head>
     <body>
     <!-- Navbar  -->
@@ -29,8 +59,15 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
+                      {% if user.is_authenticated %}
+                      <a class="nav-item nav-link" href="{% url 'Main-Page' %}">Home</a>
+
+                      <a class="nav-item nav-link" href="{% url 'Workflows' user.username %}">WorkFlows</a>
+                      <a class="nav-item nav-link" href="{% url 'teams' user.username %}">Teams</a>
+                      {% else %}
                         <a class="nav-item nav-link" href="{% url 'Main-Page' %}">Home</a>
                         <a class="nav-item nav-link" href="/"></a>
+                        {% endif %}
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
