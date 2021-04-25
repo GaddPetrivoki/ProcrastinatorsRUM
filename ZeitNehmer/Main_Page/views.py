@@ -23,3 +23,6 @@ def register(request):
         form = UserRegisterForm()
 
     return render(request, 'users/register.html', {'form': form})
+
+def inbox_page(request):
+   return render(request, 'Main_Page/inbox.html')
