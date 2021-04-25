@@ -5,9 +5,7 @@
   {% csrf_token %}
   <fieldset action="" class="form-group">
     {{ form | crispy }}
-
-    <input type="submit" value="Submit">
-    
+    <a><button type="submit" class="btn btn-primary btn-lg" value="Submit">Create Teams</a></button>
   </fieldset>
 </form>
 {% endblock content %}
