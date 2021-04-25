@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'workflows.apps.WorkflowsConfig',
 
     'django_tables2',
+    'direct'
 
 
 ]

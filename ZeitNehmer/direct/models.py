@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Max
+
 
 # Create your models here.
 class Message(models.Model):
@@ -30,3 +32,13 @@ class Message(models.Model):
 
         return sender_message
 
+    def get_messages(user):
+        users = []
+        messages = Message.objects.filter(user=user).values('recipient').annotate(Last=Max('date')).order_by('-last')
+        for message in messages:
+            users.append({
+                'user':User.objects.get(pk=message['recipient']),
+                'last': message['last'],
+                'unread': Message.objects.filter(user=user, recipient_pk=message['recipient'], is_read=False).count()
+            })
+        return users
