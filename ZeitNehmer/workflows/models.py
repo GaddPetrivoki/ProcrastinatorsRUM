@@ -23,20 +23,3 @@ class Workflows(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     team = models.ForeignKey(Teams, on_delete=models.CASCADE, null=True)
-class User(AbstractUser):
-
-        MANAGER = 1
-        CLIENT = 2
-
-        ROLE_CHOICES = (
-            (MANAGER, 'Manager'),
-            (CLIENT,'Client')
-        )
-        role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
-        user = User.objects.first()
-        user.role = User.CLIENT
-        user.save()
-        user.role == USER.MANAGER
-        False
-        user.role == USER.CLIENT
-        True
