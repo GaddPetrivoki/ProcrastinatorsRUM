@@ -21,7 +21,7 @@ class TeamsForm(forms.ModelForm):
         fields = ['name', 'description', 'members']
 
     members = forms.ModelMultipleChoiceField(
-        queryset=User.objects.none(),
+        queryset=User.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required = False,
     )

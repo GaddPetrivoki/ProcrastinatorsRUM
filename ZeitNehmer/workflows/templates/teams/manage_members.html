@@ -13,12 +13,10 @@
 {% for member in members %}
 {% if member != user %}
 <form action="" method="POST">
-  <ul>
-  <li>
+
   {% csrf_token %}
     <p id="p5">{{member}}   <button type="submit" class="btn btn-outline-danger btn-sm" name='delete_member' value="{{member.id}}">Remove Member</button></p>
-  </li>
-  </ul>
+
 </form>
 {% endif %}
 {% endfor %}
@@ -35,7 +33,7 @@
 {% endif %}
 {% endfor %}
 {% endif %}
-<div class="d-grid gap-2 d-md-flex justify-content-md-start">
-  <a href="{% url 'teams_workflows' user.username team.id %}" class="btn btn-primary btn-lg" type="button">{{team.name}}'s Workflows</a>
+<div class="d-grid gap-2 d-md-block">
+  <a href="{% url 'teams_workflows' user.username team.id %}" class="btn btn-outline-primary" type="button">{{team.name}}'s Workflows</a>
 </div>
 {% endblock content %}
