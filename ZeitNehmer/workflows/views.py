@@ -15,9 +15,8 @@ class WorkflowsListView(LoginRequiredMixin, SingleTableView):
     def get_queryset(self):
 
         self.request.session['team'] = None
-        print(self.request.session['team'])
         self.request.session['prev_url'] = self.request.get_full_path()
-        return Workflows.objects.filter(owner=self.request.user.id)
+        return Workflows.objects.filter(owner=self.request.user.id, team__isnull = True)
     login_url = '/login/'
     redirect_field_name = 'redirect_to'
     model = Workflows
@@ -52,7 +51,7 @@ class WorkflowUpdate(UpdateView):
     form_class = WorkflowsForm
     template_name = "workflows/updateWorkflow.html"
     def get_success_url(self, **kwargs):
-        print(self.request.POST.get('team'))
+
         if self.request.session['team'] == None:
             return reverse_lazy('Workflows', args=[self.request.user])
         else:
@@ -77,7 +76,6 @@ def teamsView(request, username):
 def teamsCreate(request, username):
     form = TeamsForm()
     form.fields['members'].queryset = User.objects.exclude(username = request.user)
-    print(form.fields['members'].queryset)
     if request.method == 'POST':
         form = TeamsForm(request.POST)
         if form.is_valid():
